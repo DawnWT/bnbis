@@ -4,19 +4,19 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import type { FieldValues, SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
-import { toast } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 
-import useRegisterModal from '@/hooks/useRegisterModal'
+import useLoginModal from '@/hooks/useLoginModal'
 import { useSupabase } from '@/providers/SupabaseProvider'
 
 import Heading from '../Heading'
 import Input from '../inputs/Input'
 import Modal from './Modal'
 
-const RegisterModal = () => {
-  const registerModal = useRegisterModal()
-  const router = useRouter()
+const LoginModal = () => {
   const { supabase } = useSupabase()
+  const loginModal = useLoginModal()
+  const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const {
     register,
@@ -24,7 +24,6 @@ const RegisterModal = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: '',
       email: '',
       password: '',
     },
@@ -34,12 +33,11 @@ const RegisterModal = () => {
     setIsLoading(true)
 
     supabase.auth
-      .signUp({
+      .signInWithPassword({
         email: formData.email,
         password: formData.password,
-        options: { data: { name: formData.name } },
       })
-      .then(async ({ error, data }) => {
+      .then(async ({ data, error }) => {
         if (error !== null) {
           toast.error(`Something went wrong: ${error.message}`)
           return
@@ -47,9 +45,9 @@ const RegisterModal = () => {
 
         if (data.session !== null) {
           await supabase.auth.setSession(data.session)
-          toast.success('Registered successfully')
+          toast.success('Logged in successfully')
 
-          registerModal.onClose()
+          loginModal.onClose()
           router.refresh()
           return
         }
@@ -66,18 +64,10 @@ const RegisterModal = () => {
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Heading title="Welcome to Airbnbis" subtitle="Create an account" />
+      <Heading title="Welcome back" subtitle="Log in to your account !" />
       <Input
         id="email"
         label="Email"
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-        required
-      />
-      <Input
-        id="name"
-        label="Name"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -100,7 +90,7 @@ const RegisterModal = () => {
       <div className="flex flex-row items-center justify-center gap-2">
         <span>Already have an account ?</span>
         <span
-          onClick={registerModal.onClose}
+          onClick={loginModal.onClose}
           className="text-neutral-800 cursor-pointer hover:underline"
         >
           Log in
@@ -112,10 +102,10 @@ const RegisterModal = () => {
   return (
     <Modal
       disabled={isLoading}
-      isOpen={registerModal.isOpen}
-      title="Register"
+      isOpen={loginModal.isOpen}
+      title="Login"
       actionLabel="Continue"
-      onClose={registerModal.onClose}
+      onClose={loginModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
       footer={footerContent}
@@ -123,4 +113,4 @@ const RegisterModal = () => {
   )
 }
 
-export default RegisterModal
+export default LoginModal
