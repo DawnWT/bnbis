@@ -84,32 +84,29 @@ export interface Database {
       }
       users: {
         Row: {
+          avatar: string | null
           created_at: string
           email: string | null
-          email_verified: string | null
-          hashed_password: string | null
+          favorite_ids: number[]
           id: string
-          image: string | null
           name: string | null
           updated_at: string | null
         }
         Insert: {
+          avatar?: string | null
           created_at?: string
           email?: string | null
-          email_verified?: string | null
-          hashed_password?: string | null
+          favorite_ids: number[]
           id: string
-          image?: string | null
           name?: string | null
           updated_at?: string | null
         }
         Update: {
+          avatar?: string | null
           created_at?: string
           email?: string | null
-          email_verified?: string | null
-          hashed_password?: string | null
+          favorite_ids?: number[]
           id?: string
-          image?: string | null
           name?: string | null
           updated_at?: string | null
         }

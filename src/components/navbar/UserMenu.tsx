@@ -4,17 +4,17 @@ import { useRouter } from 'next/navigation'
 import React, { useCallback, useState } from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
 
-import type { getCurrentUser } from '@/actions/getCurrentUser'
 import useLoginModal from '@/hooks/useLoginModal'
 import useRegisterModal from '@/hooks/useRegisterModal'
 import useRentModal from '@/hooks/useRentModal'
 import { useSupabase } from '@/providers/SupabaseProvider'
+import type { SafeUser } from '@/types'
 
 import Avatar from '../Avatar'
 import MenuItem from './MenuItem'
 
 interface UserMenuProps {
-  currentUser: Awaited<ReturnType<typeof getCurrentUser>> | null
+  currentUser: SafeUser | null
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
