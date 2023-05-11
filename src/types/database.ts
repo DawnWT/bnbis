@@ -9,7 +9,7 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      Listing: {
+      housings: {
         Row: {
           bathroom_count: number
           category: string
@@ -57,8 +57,8 @@ export interface Database {
         Row: {
           created_at: string | null
           end_date: string
+          housing_id: number
           id: number
-          listing_id: number
           start_date: string
           total_price: number
           user_id: string
@@ -66,8 +66,8 @@ export interface Database {
         Insert: {
           created_at?: string | null
           end_date: string
+          housing_id: number
           id?: number
-          listing_id: number
           start_date: string
           total_price: number
           user_id: string
@@ -75,8 +75,8 @@ export interface Database {
         Update: {
           created_at?: string | null
           end_date?: string
+          housing_id?: number
           id?: number
-          listing_id?: number
           start_date?: string
           total_price?: number
           user_id?: string

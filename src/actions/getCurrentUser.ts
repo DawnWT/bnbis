@@ -6,8 +6,6 @@ import type { Database } from '@/types/database'
 export const getCurrentUser = async () => {
   try {
     const supabase = createServerComponentSupabaseClient<Database>({
-      // supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
-      // supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
       headers,
       cookies,
     })
@@ -27,7 +25,7 @@ export const getCurrentUser = async () => {
 
     const { data, error: queryError } = await supabase
       .from('users')
-      .select('*, listings (id, title), reservations (id, total_price)')
+      .select('*, housings (id, title), reservations (id, total_price)')
       .eq('id', session.user.id)
       .single()
 

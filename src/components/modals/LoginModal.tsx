@@ -1,12 +1,13 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import type { FieldValues, SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
 import useLoginModal from '@/hooks/useLoginModal'
+import useRegisterModal from '@/hooks/useRegisterModal'
 import { useSupabase } from '@/providers/SupabaseProvider'
 
 import Heading from '../Heading'
@@ -16,6 +17,7 @@ import Modal from './Modal'
 const LoginModal = () => {
   const { supabase } = useSupabase()
   const loginModal = useLoginModal()
+  const registerModal = useRegisterModal()
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const {
@@ -62,6 +64,11 @@ const LoginModal = () => {
       })
   }
 
+  const toggle = useCallback(() => {
+    loginModal.onClose()
+    registerModal.onOpen()
+  }, [loginModal, registerModal])
+
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading title="Welcome back" subtitle="Log in to your account !" />
@@ -88,12 +95,12 @@ const LoginModal = () => {
   const footerContent = (
     <div className="text-neutral-500 text-center mt-4 font-light">
       <div className="flex flex-row items-center justify-center gap-2">
-        <span>Already have an account ?</span>
+        <span>First Time using Airbnbis</span>
         <span
-          onClick={loginModal.onClose}
+          onClick={toggle}
           className="text-neutral-800 cursor-pointer hover:underline"
         >
-          Log in
+          Create an account
         </span>
       </div>
     </div>
