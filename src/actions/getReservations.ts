@@ -31,7 +31,7 @@ const getReservations = async ({ authorId, housingId, userId }: IParams) => {
 
   const { data, error } = await supabase
     .from('reservations')
-    .select('*, housings(*)')
+    .select('*, housings:housing_id(*)')
     .match(query)
     .order('created_at')
 

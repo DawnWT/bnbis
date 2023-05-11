@@ -10,11 +10,11 @@ import { toast } from 'react-hot-toast'
 import useLoginModal from '@/hooks/useLoginModal'
 import type { SafeHousingWithUser, SafeReservation, SafeUser } from '@/types'
 
-import Container from './Container'
-import HousingHead from './housing/HousingHead'
-import HousingInfo from './housing/HousingInfo'
-import HousingReservation from './housing/HousingReservation'
-import { categories } from './navbar/Categories'
+import Container from '../Container'
+import HousingHead from '../housing/HousingHead'
+import HousingInfo from '../housing/HousingInfo'
+import HousingReservation from '../housing/HousingReservation'
+import { categories } from '../navbar/Categories'
 
 const initialDateRange = {
   startDate: new Date(),

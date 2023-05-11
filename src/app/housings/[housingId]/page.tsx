@@ -1,9 +1,9 @@
 import { getCurrentUser } from '@/actions/getCurrentUser'
 import getHousingById from '@/actions/getHousingById'
 import getReservations from '@/actions/getReservations'
-import ClientOnly from '@/components/ClientOnly'
+import ClientOnly from '@/components/client/ClientOnly'
 import EmptyState from '@/components/EmptyState'
-import HousingClient from '@/components/HousingClient'
+import HousingClient from '@/components/client/HousingClient'
 
 interface IParams {
   housingId: string

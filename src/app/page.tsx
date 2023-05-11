@@ -1,6 +1,6 @@
 import { getCurrentUser } from '@/actions/getCurrentUser'
 import getHousings from '@/actions/getHousings'
-import ClientOnly from '@/components/ClientOnly'
+import ClientOnly from '@/components/client/ClientOnly'
 import Container from '@/components/Container'
 import EmptyState from '@/components/EmptyState'
 import HousingCard from '@/components/housing/HousingCard'
