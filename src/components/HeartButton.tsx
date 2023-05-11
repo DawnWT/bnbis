@@ -7,7 +7,7 @@ import type { SafeUser } from '@/types'
 
 interface HeartButtonProps {
   housingId: number
-  currentUser?: SafeUser
+  currentUser?: SafeUser | null
 }
 
 const HeartButton: React.FC<HeartButtonProps> = ({

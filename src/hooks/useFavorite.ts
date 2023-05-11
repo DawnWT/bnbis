@@ -44,7 +44,7 @@ const useFavorite = ({ housingId, currentUser }: IUseFavorite) => {
 
         await request()
         router.refresh()
-        toast.success('Housing favorited')
+        toast.success('Success')
       } catch (err: unknown) {
         toast.error('Something went wrong')
       }
