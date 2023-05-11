@@ -5,6 +5,8 @@ import { NextResponse } from 'next/server'
 
 import type { Database } from '@/types/database'
 
+export const revalidate = 0
+
 export const POST = async (req: NextRequest) => {
   const supabase = createRouteHandlerSupabaseClient<Database>({
     headers,
