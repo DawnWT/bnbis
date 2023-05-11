@@ -15,25 +15,24 @@ const getReservations = async ({ authorId, housingId, userId }: IParams) => {
     cookies,
   })
 
-  const query: Record<string, any> = {}
+  let query = supabase
+    .from('reservations')
+    .select('*, housings(*)')
+    .order('created_at')
 
   if (housingId) {
-    query['housing_id'] = housingId
+    query = query.eq('housing_id', housingId)
   }
 
   if (userId) {
-    query['user_id'] = userId
+    query = query.eq('user_id', userId)
   }
 
   if (authorId) {
-    query['housings'] = { user_id: authorId }
+    query = query.eq('housings.user_id', authorId)
   }
 
-  const { data, error } = await supabase
-    .from('reservations')
-    .select('*, housings:housing_id(*)')
-    .match(query)
-    .order('created_at')
+  const { data, error } = await query
 
   if (error !== null) {
     return []
