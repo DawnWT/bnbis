@@ -25,7 +25,7 @@ export const getCurrentUser = async () => {
 
     const { data, error: queryError } = await supabase
       .from('users')
-      .select('*, housings (id, title), reservations (id, total_price)')
+      .select('*, housings (*), reservations (*)')
       .eq('id', session.user.id)
       .single()
 
