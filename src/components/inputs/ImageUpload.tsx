@@ -11,7 +11,7 @@ interface ImageUploadProps {
   value: string
 }
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
+const ImageUpload: React.FC<ImageUploadProps> = ({ onChange }) => {
   const { supabase } = useSupabase()
 
   const handleUpload = useCallback(

@@ -34,6 +34,7 @@ const useFavorite = ({ housingId, currentUser }: IUseFavorite) => {
       }
 
       try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         let request: () => Promise<any>
 
         if (hasFavorited) {
