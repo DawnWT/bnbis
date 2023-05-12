@@ -10,6 +10,8 @@ interface HomeProps {
   searchParams: IHousingParams
 }
 
+export const revalidate = 0
+
 export default async function Home({ searchParams }: HomeProps) {
   const housings = await getHousings(searchParams)
   const currentUser = await getCurrentUser()

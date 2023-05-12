@@ -9,6 +9,8 @@ interface IParams {
   housingId: string
 }
 
+export const revalidate = 0
+
 const HousingPage = async ({ params }: { params: IParams }) => {
   const housing = await getHousingById({ housingId: Number(params.housingId) })
   const currentUser = await getCurrentUser()

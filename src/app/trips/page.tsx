@@ -4,6 +4,8 @@ import ClientOnly from '@/components/client/ClientOnly'
 import TripsClient from '@/components/client/TripsClient'
 import EmptyState from '@/components/EmptyState'
 
+export const revalidate = 0
+
 const TripsPage = async () => {
   const currentUser = await getCurrentUser()
   if (!currentUser) {

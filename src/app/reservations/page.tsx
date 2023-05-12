@@ -4,6 +4,8 @@ import ClientOnly from '@/components/client/ClientOnly'
 import ReservationsClient from '@/components/client/ReservationsClient'
 import EmptyState from '@/components/EmptyState'
 
+export const revalidate = 0
+
 const ReservationsPage = async () => {
   const currentUser = await getCurrentUser()
 

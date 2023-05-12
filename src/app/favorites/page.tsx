@@ -4,6 +4,8 @@ import ClientOnly from '@/components/client/ClientOnly'
 import FavoritesClient from '@/components/client/FavoritesClient'
 import EmptyState from '@/components/EmptyState'
 
+export const revalidate = 0
+
 const FavoritesPage = async () => {
   const currentUser = await getCurrentUser()
   const favorites = await getFavoriteHousings()

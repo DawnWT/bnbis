@@ -4,6 +4,8 @@ import ClientOnly from '@/components/client/ClientOnly'
 import PropertiesClient from '@/components/client/PropertiesClient'
 import EmptyState from '@/components/EmptyState'
 
+export const revalidate = 0
+
 const PropertiesPage = async () => {
   const currentUser = await getCurrentUser()
 
