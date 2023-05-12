@@ -36,8 +36,6 @@ const HousingClient: React.FC<HousingClientProps> = ({
   const loginModal = useLoginModal()
   const router = useRouter()
 
-  // console.log(reservations)
-
   const [isLoading, setIsLoading] = useState(false)
   const [totalPrice, setTotalPrice] = useState(housing.price)
   const [dateRange, setDateRange] = useState<Range>(initialDateRange)
