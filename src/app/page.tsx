@@ -6,7 +6,7 @@ import EmptyState from '@/components/EmptyState'
 import HousingCard from '@/components/housing/HousingCard'
 
 export default async function Home() {
-  const housings = await getHousings()
+  const housings = await getHousings({})
   const currentUser = await getCurrentUser()
 
   if (housings.length === 0) {

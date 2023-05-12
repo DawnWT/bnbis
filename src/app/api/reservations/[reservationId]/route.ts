@@ -9,6 +9,8 @@ interface IParams {
   reservationId?: string
 }
 
+export const revalidate = 0
+
 export const DELETE = async (
   req: NextRequest,
   { params }: { params: IParams }

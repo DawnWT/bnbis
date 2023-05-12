@@ -1,13 +1,16 @@
 import { createRouteHandlerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { cookies, headers } from 'next/headers'
-import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
 import type { Database } from '@/types/database'
 
+interface IParams {
+  housingId?: string
+}
+
 export const revalidate = 0
 
-export const POST = async (req: NextRequest) => {
+export const DELETE = async (req: Request, { params }: { params: IParams }) => {
   const supabase = createRouteHandlerSupabaseClient<Database>({
     headers,
     cookies,
@@ -19,27 +22,23 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.error()
   }
 
-  const { housingId, startDate, endDate, totalPrice } = await req.json()
+  const { housingId } = params
 
-  if (!housingId || !startDate || !endDate || !totalPrice) {
+  if (!housingId) {
     return NextResponse.error()
   }
 
-  const { data: reservationData, error: reservationError } = await supabase
-    .from('reservations')
-    .insert({
-      housing_id: housingId,
-      start_date: startDate,
-      end_date: endDate,
-      total_price: totalPrice,
-      user_id: userData.user.id,
-    })
+  const { data: deleteData, error: deleteError } = await supabase
+    .from('housings')
+    .delete()
+    .eq('id', Number(housingId))
+    .eq('user_id', userData.user.id)
     .select()
     .single()
 
-  if (reservationError) {
+  if (deleteError) {
     return NextResponse.error()
   }
 
-  return NextResponse.json(reservationData)
+  return NextResponse.json(deleteData)
 }

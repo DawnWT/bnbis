@@ -4,6 +4,8 @@ import { NextResponse } from 'next/server'
 
 import type { Database } from '@/types/database'
 
+export const revalidate = 0
+
 interface IParams {
   housingId?: string
 }
