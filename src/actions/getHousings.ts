@@ -56,8 +56,19 @@ const getHousings = async ({
   }
 
   if (startDate && endDate) {
-    query = query.or(
-      `start_date.lte.${startDate},and(end_date.eq.${startDate}),start_date.lte.${endDate},and(end_date.gte.${endDate})`
+    const { data: reservationData, error: reservationError } = await supabase
+      .from('reservations')
+      .select('housing_id')
+      .not('start_date', 'lte', startDate)
+      .not('end_date', 'gte', endDate)
+
+    if (reservationError !== null) {
+      return []
+    }
+
+    query = query.in(
+      'id',
+      reservationData.map((el) => el.housing_id)
     )
   }
 

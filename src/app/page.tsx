@@ -1,12 +1,17 @@
 import { getCurrentUser } from '@/actions/getCurrentUser'
+import type { IHousingParams } from '@/actions/getHousings'
 import getHousings from '@/actions/getHousings'
 import ClientOnly from '@/components/client/ClientOnly'
 import Container from '@/components/Container'
 import EmptyState from '@/components/EmptyState'
 import HousingCard from '@/components/housing/HousingCard'
 
-export default async function Home() {
-  const housings = await getHousings({})
+interface HomeProps {
+  searchParams: IHousingParams
+}
+
+export default async function Home({ searchParams }: HomeProps) {
+  const housings = await getHousings(searchParams)
   const currentUser = await getCurrentUser()
 
   if (housings.length === 0) {
