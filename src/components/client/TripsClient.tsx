@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import axios from 'axios'
@@ -50,7 +51,7 @@ const TripsClient: React.FC<TripsClientProps> = ({
         {reservations.map((el) => (
           <HousingCard
             key={el.id}
-            data={el.housings}
+            data={el.housings as any}
             actionId={el.id.toString()}
             onAction={onCancel}
             disabled={deletingId === el.id}

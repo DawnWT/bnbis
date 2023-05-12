@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { useRouter } from 'next/navigation'
@@ -76,7 +77,7 @@ const LoginModal = () => {
         id="email"
         label="Email"
         disabled={isLoading}
-        register={register}
+        register={register as any}
         errors={errors}
         required
       />
@@ -85,7 +86,7 @@ const LoginModal = () => {
         label="Password"
         type="password"
         disabled={isLoading}
-        register={register}
+        register={register as any}
         errors={errors}
         required
       />

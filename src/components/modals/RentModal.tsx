@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import axios from 'axios'
@@ -70,7 +71,7 @@ const RentModal = () => {
   )
 
   const setCustomValue = (id: string, value: unknown) => {
-    setValue(id, value, {
+    setValue(id as any, value, {
       shouldDirty: true,
       shouldValidate: true,
       shouldTouch: true,
@@ -156,12 +157,12 @@ const RentModal = () => {
           subtitle="Help guests find you !"
         />
         <CountrySelect
-          value={location}
+          value={location as any}
           onChange={(value) => {
             setCustomValue('location', value)
           }}
         />
-        <Map center={location?.latlng} />
+        <Map center={(location as any)?.latlng} />
       </div>
     )
   }
@@ -231,7 +232,7 @@ const RentModal = () => {
           id="title"
           label="Title"
           disabled={isLoading}
-          register={register}
+          register={register as any}
           errors={errors}
           required
         />
@@ -240,7 +241,7 @@ const RentModal = () => {
           id="description"
           label="Description"
           disabled={isLoading}
-          register={register}
+          register={register as any}
           errors={errors}
           required
         />
@@ -260,7 +261,7 @@ const RentModal = () => {
           label="Price"
           formatPrice
           disabled={isLoading}
-          register={register}
+          register={register as any}
           errors={errors}
           required
         />
